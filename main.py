@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import time as tm
 from mpl_toolkits.mplot3d import Axes3D
 import random as rd
+
 #Я взял вариант № 2
 def numPyTest():
     nparray = np.random.randint(1,100,size=2000000)
@@ -20,21 +21,25 @@ def numPyTest():
     #
     timeN = timer(np.multiply, nA,nB)
     timeP =  timer(multiplyarray,pA,pB)
-    print(f"Время умножения в NumPy: {tN}")
-    print(f'Время умножения в python:{tP}')
-    print(f'Numpy быстрее стандарта в {round(tP/tN)} раза')
-    
-
-numPyTest()
-   
-def updatedata() -> np.ndarray:
-    filedata = np.genfromtxt('data1.csv', delimiter=',')
-    #
-    return 
+    print(f"Время умножения в NumPy: {timeN}")
+    print(f'Время умножения в python:{timeP}')
+    print(f'Numpy быстрее стандарта в {round(timeP/timeN)} раза')
 
 
+def myHist():
+    arr = np.genfromtxt('data2.csv', delimiter=',')
+    arr = arr[1:]
+    pH = (arr[:,0])
+    fig = plt.figure(figsize=(6, 4))
+    ax = fig.add_subplot()
+    ax.set_xlabel('pH')
+    ax.set_ylabel('Частота')
+    ax.set_title(f'гистограмма для параметра pH \n среднеквадратичное отклонение:{np.std(np.nan_to_num(pH))}')
+    ax.hist(pH, 16)
+    ax.grid()
+    plt.show()
 
-
+myHist()
 
 # def start():
 #     arr = np.array([5, 9, 10, 'ad', 7])
